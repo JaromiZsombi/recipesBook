@@ -1,0 +1,72 @@
+:root{
+    --primary: #443742ff;
+    --secondary: #846c5bff;
+    --accent: #cea07eff;
+    --background: #edd9a3ff;
+    --disabled: #e2e8c0ff;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.home{
+    background-image: url(assets/cover_small.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+}
+.Gonb{
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    max-width: 500px;
+    font-size: larger;
+    background-color: var(--disabled);
+}
+.recipesBase{
+    background-color: var(--background);
+}
+.recipesTitle{
+    font-size: 50px;
+}
+
+.recipesBase button{
+    background-color: var(--primary);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.addnewRecipes{
+    background-color: var(--background);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.newrecipeForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black solid 4px;
+    justify-self: center;
+    max-width: 20%;
+    padding: 20px;
+    background-color: var(--accent);
+    border-radius: 20px;
+}
