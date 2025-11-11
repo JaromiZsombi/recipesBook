@@ -24,6 +24,9 @@
     justify-content: center;
     align-items: center;
 }
+.mainHome{
+    height: 2vh;
+}
 .title{
     color: var(--primary);
     display: flex;
@@ -44,6 +47,8 @@
 }
 .recipesTitle{
     font-size: 30px;
+    margin-top: 10px;
+
 }
 
 .recipesBase button{
@@ -122,4 +127,17 @@ ul{
     justify-self: center;
     background-color: white;
     border-radius: 20px;
+}
+
+.MyHeaderCss{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    z-index: 1;
+}
+
+.MyHeaderCss button{
+    float: right;
+    height: 40px;
 }
