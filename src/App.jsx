@@ -6,12 +6,17 @@ import { RecipesForm } from './pages/RecipesForm'
 import { SignIn } from './components/SignIn'
 import { SignUp } from './components/SignUp'
 import { MyHeader } from './components/MyHeader'
+import { PwReset } from './components/PwReset'
+import MyToastify from './components/MyToastify'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
   return (
     <div>
       <MyHeader />
+      <MyToastify/>
+      <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
@@ -19,6 +24,7 @@ function App() {
         <Route path="/edit/:id" element={<RecipesForm />}></Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path='/pwreset' element={<PwReset/>}/>
       </Routes>
     </div>
     //const navigate = useNavigate()

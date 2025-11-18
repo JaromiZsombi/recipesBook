@@ -43,11 +43,15 @@
 }
 .recipesBase{
     background-color: var(--background);
+    width: 100%;
 
 }
 .recipesTitle{
     font-size: 30px;
     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
 }
 
@@ -137,7 +141,45 @@ ul{
     z-index: 1;
 }
 
-.MyHeaderCss button{
+.MyHeaderCssButton{
     float: right;
     height: 40px;
+}
+
+.signinBase{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-self: center;
+    justify-content: center;
+}
+
+.signinForm{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.signupBase{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-self: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.signupForm{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.itt{
+    cursor: pointer;
+    color: var(--background);
 }

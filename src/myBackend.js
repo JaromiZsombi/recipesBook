@@ -41,11 +41,12 @@ export const addRecipe = async (recipe, file) => {
 }
 
 //receptek realtime olvasása: onSnapshot()
-export const readRecipes = async (setRecipes) => {
+export const readRecipes = async (setRecipes, setLoading) => {
     const collectionref = collection(db, "recipes")
     const q = query(collectionref, orderBy("timestamp", "desc"))
     const unsubscribe = onSnapshot(q, (snapshot) => {
         setRecipes(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+        setLoading(false)
     })
     return unsubscribe
 }

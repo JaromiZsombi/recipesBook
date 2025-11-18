@@ -5,9 +5,12 @@ import { useNavigate, useParams } from 'react-router';
 import { FaPlus } from "react-icons/fa6";
 import { addRecipe, readRecipe, updateRecipe } from '../myBackend';
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import { MyUserContext } from '../context/MyUserProvider';
 
 export const RecipesForm = () => {
 
+  const {user} = useContext(MyUserContext)
   const [name, setName] = useState("")
   const [ingredients, setIngredients] = useState([""])
   const [steps, setSteps] = useState("")
@@ -42,7 +45,7 @@ export const RecipesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    let inputData = {name, ingredients, steps, category}
+    let inputData = {name, ingredients, steps, category, uid:user.uid, displayName:user.displayName}
     console.log(inputData);
     if(id){
       //update
@@ -75,6 +78,7 @@ export const RecipesForm = () => {
     }
   }
   
+  //console.log("zsidó zisa sdoiaiud a", user)
 
   return (
 

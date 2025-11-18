@@ -4,13 +4,13 @@ import { deleteRecipe } from '../myBackend';
 import { CiEdit } from "react-icons/ci";
 import { useNavigate } from 'react-router';
 
-export const RecipeCard = ({id, name,steps, ingredients, imgUrl, deleteUrl}) => {
+export const RecipeCard = ({id, name,steps, ingredients, imgUrl, deleteUrl, uid, displayName}) => {
 
     const navigate=useNavigate()
 
   return (
     <div className='cardok' style={{margin:"20px", maxWidth:"1000px", position:"relative"}}>
-        <h1>{name}</h1>
+        <h1>{name} by: {displayName}</h1>
         <div className='hozzavalokBase'>
             <p className='hozzavalok'>Hozzávalók: </p>
             <ul>{ingredients.map(obj=><li>{obj}</li>)}</ul>
