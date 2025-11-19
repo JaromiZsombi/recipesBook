@@ -52,6 +52,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
 
 }
 
@@ -123,6 +124,7 @@ ul{
     background-color: var(--accent);
     border-radius: 20px;
     padding: 20px;
+    width: 540px;
 }
 .hozzavalokBase{
     display: flex;

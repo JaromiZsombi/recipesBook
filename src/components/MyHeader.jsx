@@ -6,15 +6,22 @@ import { MyUserContext } from '../context/MyUserProvider';
 import { RxAvatar } from "react-icons/rx";
 
 export const MyHeader = () => {
-    const navigate = useNavigate()
-    const { user, logoutUser } = useContext(MyUserContext)
+  const navigate = useNavigate()
+  const { user, logoutUser } = useContext(MyUserContext)
   return (
     <div className='MyHeaderCss'>
       <FaHouseChimney onClick={() => navigate("/")} style={{ fontSize: "30px" }} className='house' />
+
       {user ?
 
         <div className='MyHeaderCssButton'>
-          <RxAvatar className='MyHeaderCssButton' size={50} style={{ color: "white" }} title={user?.displayName} />
+          <span onClick={()=>navigate('/profile')}>
+            {user?.photoURL ?
+              <img style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} src={user.photoURL} alt="profilkép"/> 
+            :
+              <RxAvatar className='MyHeaderCssButton' size={50} style={{ color: "white" }} title={user?.displayName} />
+            }
+            </span>
           <button className='MyHeaderCssButton' onClick={() => logoutUser()}>
             Kijelentkezés
           </button>
@@ -22,10 +29,10 @@ export const MyHeader = () => {
         :
         <div className='MyHeaderCssButton'>
           <button className='MyHeaderCssButton' onClick={() => navigate("/signup")}>
-             Regisztrálás
+            Regisztrálás
           </button>
           <button className='MyHeaderCssButton' onClick={() => navigate("/signin")}>
-             Bejelentkezés
+            Bejelentkezés
           </button>
         </div>
 

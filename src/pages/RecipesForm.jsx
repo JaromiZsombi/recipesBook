@@ -11,6 +11,7 @@ import { MyUserContext } from '../context/MyUserProvider';
 export const RecipesForm = () => {
 
   const {user} = useContext(MyUserContext)
+  
   const [name, setName] = useState("")
   const [ingredients, setIngredients] = useState([""])
   const [steps, setSteps] = useState("")
