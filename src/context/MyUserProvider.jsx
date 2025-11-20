@@ -4,6 +4,7 @@ import { createContext } from 'react'
 import { auth } from '../firebaseApp'
 import { disableNetwork } from 'firebase/firestore'
 import { useNavigate } from 'react-router'
+import { uploadImage } from '../cloudinaryUtils'
 
 export const MyUserContext = createContext() //tartály az adatoknak
 export const MyUserProvider = ({ children }) => {
@@ -71,9 +72,24 @@ export const MyUserProvider = ({ children }) => {
         }
     }
 
+    //avatar update
+    const avatarUpdate=async(file)=>{
+        try {
+            const uploadResult = await uploadImage(file)
+            console.log(uploadResult);
+            if(uploadResult?.url) await updateProfile(auth.currentUser, {photoURL:uploadResult.url})
+            setUser({...auth.currentUser})
+            setMsg(null)
+            setMsg({updateProfile:"Sikeres profil módosítás!"})
+            
+        } catch (error) {
+            setMsg({err:error.message})
+        }
+    }
+
     return (
         <div>
-            <MyUserContext.Provider value={{ user, signUpUser, logoutUser, signInUser, msg, setMsg, resetPassword }}>
+            <MyUserContext.Provider value={{ user, signUpUser, logoutUser, signInUser, msg, setMsg, resetPassword, avatarUpdate }}>
                 {children}
             </MyUserContext.Provider>
         </div>

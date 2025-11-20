@@ -87,3 +87,5 @@ export const updateRecipe = async (id, updatedData, file) => {
         console.log("nem sikerült a módosítás: " + error)
     }
 }
+
+//profile update:

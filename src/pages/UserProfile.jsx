@@ -4,7 +4,7 @@ import { MyUserContext } from '../context/MyUserProvider'
 import { useState } from 'react'
 
 export const UserProfile = () => {
-    const { user } = useContext(MyUserContext)
+    const { user, avatarUpdate } = useContext(MyUserContext)
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -17,8 +17,20 @@ export const UserProfile = () => {
         }
     }
 
-    const handleSubmit=(e)=>{
-        e.preventDefault()
+    const handleSubmit=async(event)=>{
+        event.preventDefault()
+        console.log("Loading igaz jasuasuoidasoudauoi")
+        setLoading(true)
+        if(!file) return
+        try {
+            await avatarUpdate(file)
+        } catch (error) {
+            console.log(error);
+            
+        } finally{
+            console.log("False a loading ahahahahahahaha")
+            setLoading(false)
+        }
     }
     return (
         <div>
@@ -32,7 +44,7 @@ export const UserProfile = () => {
                 )}
             </div>
 
-            <form onChange={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="file-upload" className='custom-file-upload'>Új profilkép:</label>
                 <input id="file-upload" type="file" accept='image/*' onChange={handleFileChange} />
                 <p></p>
