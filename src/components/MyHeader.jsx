@@ -14,20 +14,20 @@ export const MyHeader = () => {
 
       {user ?
 
-        <div className='MyHeaderCssButton'>
+        <div className='MyHeaderImage'>
           <span onClick={()=>navigate('/profile')}>
             {user?.photoURL ?
-              <img style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} src={user.photoURL} alt="profilkép"/> 
+              <img style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} src={user.photoURL} alt="profilkép"/>
             :
-              <RxAvatar className='MyHeaderCssButton' size={50} style={{ color: "white" }} title={user?.displayName} />
+              <RxAvatar size={50} style={{ color: "white" }} title={user?.displayName} />
             }
             </span>
-          <button className='MyHeaderCssButton' onClick={() => logoutUser()}>
+          <button className='MyHeaderCssButton logOutButton' onClick={() => logoutUser()}>
             Kijelentkezés
           </button>
         </div>
         :
-        <div className='MyHeaderCssButton'>
+        <div className='MyHeaderCss'>
           <button className='MyHeaderCssButton' onClick={() => navigate("/signup")}>
             Regisztrálás
           </button>

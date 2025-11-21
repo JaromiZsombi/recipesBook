@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router';
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 import { addRecipe, readRecipe, updateRecipe } from '../myBackend';
 import { useEffect } from 'react';
 import { useContext } from 'react';
@@ -65,6 +65,11 @@ export const RecipesForm = () => {
     
   }
 
+  const removeIngredientField=(idx)=>{
+    setIngredients(prev=>prev.filter((item, index)=>idx!=index))
+    
+  }
+
   const handleChangeIngredients = (index, value) => {
     const newIngredients = [...ingredients]
     newIngredients[index] = value
@@ -90,12 +95,14 @@ export const RecipesForm = () => {
         <input type="text" style={{border:'2px solid black', margin:'5px', width:"200px", height:"25px"}} placeholder='receptneve' value={name} onChange={(e) => setName(e.target.value)} required />
         <div >
           {ingredients.map((item, index) =>
-            <div key={index}>
+            <div key={index} style={{display:"flex", alignItems:"center", position:"relative"}}>
+              <FaMinus style={{backgroundColor:"white", borderRadius:"50%", border:"2px solid black", position:"absolute", right:"-25px", height:"20px", width:"20px", cursor:"pointer"}} onClick={() => removeIngredientField(index)}/>
               <input style={{border:'2px solid black', margin:"0.5px", width:"200px", height:"25px"}} type="text" value={item} onChange={(e) => handleChangeIngredients(index, e.target.value)} placeholder={`${index + 1}. hozzávaló: `} />
+              
             </div>
           )}
           <div style={{marginTop:"4.5px",margin:"0.5px", width:"200px", height:"25px", display:"flex", justifyContent:"center", fontSize:"25px"}}>
-            <FaPlus style={{backgroundColor:"white", borderRadius:"50%", border:"2px solid black"}} onClick={() => setIngredients([...ingredients, ""])} />
+            <FaPlus style={{backgroundColor:"white", borderRadius:"50%", border:"2px solid black", cursor:"pointer"}} onClick={() => setIngredients([...ingredients, ""])} />
           </div>
           
         </div>

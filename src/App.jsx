@@ -10,6 +10,8 @@ import { PwReset } from './components/PwReset'
 import MyToastify from './components/MyToastify'
 import { ToastContainer } from 'react-toastify'
 import { UserProfile } from './pages/UserProfile'
+import { ProtectedRoute } from './ProtectedRoute'
+import { PageNotFound } from './components/PageNotFound'
 
 function App() {
 
@@ -21,12 +23,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/addnew" element={<RecipesForm />} />
-        <Route path="/edit/:id" element={<RecipesForm />}></Route>
+        <Route path="/addnew" element={<ProtectedRoute><RecipesForm/></ProtectedRoute>} />
+        <Route path="/edit/:id" element={<ProtectedRoute><RecipesForm/></ProtectedRoute>}/>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path='/pwreset' element={<PwReset/>}/>
-        <Route path='/profile' element={<UserProfile/>}/>
+        <Route path='/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
+        <Route path='/*' element={<PageNotFound/>}/>
       </Routes>
     </div>
     //const navigate = useNavigate()

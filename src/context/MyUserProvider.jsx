@@ -1,8 +1,7 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, EmailAuthProvider, onAuthStateChanged, reauthenticateWithCredential, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { auth } from '../firebaseApp'
-import { disableNetwork } from 'firebase/firestore'
 import { useNavigate } from 'react-router'
 import { uploadImage } from '../cloudinaryUtils'
 
@@ -10,7 +9,6 @@ export const MyUserContext = createContext() //tartály az adatoknak
 export const MyUserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [msg, setMsg] = useState({})
-
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,7 +24,6 @@ export const MyUserProvider = ({ children }) => {
             await createUserWithEmailAndPassword(auth, email, password)
             await updateProfile(auth.currentUser, { displayName })
             await sendEmailVerification(auth.currentUser)
-
             console.log("Aktiválja az e-mail címét!")
             console.log("Sikeres regisztráció!")
             setMsg(prev => ({ ...prev }, { signUp: "Kattints az email címedre küldött aktiváló linkre!", info: "Kattints az email címedre küldött aktiváló linkre!" }))
@@ -40,6 +37,7 @@ export const MyUserProvider = ({ children }) => {
 
     const logoutUser = async () => {
         await signOut(auth)
+        setMsg({signIn: false})
     }
 
     const signInUser = async (email, password) => {
@@ -87,11 +85,28 @@ export const MyUserProvider = ({ children }) => {
         }
     }
 
+    const deleteAccount=async(password)=>{
+        try {
+            const credential=EmailAuthProvider.credential(auth.currentUser.email,password)
+            await reauthenticateWithCredential(auth.currentUser,credential)
+            await deleteUser(auth.currentUser)
+            setMsg(null)
+            setMsg({serverMsg:"Felhasználó fiók törölve!"})
+            
+        } catch (error) {
+            console.log(error)
+            if(error.code=="auth/wrong-password") setMsg({err:"Hibás jelszó!"})
+            else setMsg({err:"Hiba történt a fiók törlésekor!"})
+        }
+    }
+
     return (
         <div>
-            <MyUserContext.Provider value={{ user, signUpUser, logoutUser, signInUser, msg, setMsg, resetPassword, avatarUpdate }}>
+            <MyUserContext.Provider value={{ user, signUpUser, logoutUser, signInUser, msg, setMsg, resetPassword, avatarUpdate, deleteAccount }}>
                 {children}
             </MyUserContext.Provider>
         </div>
     )
+
+    {}
 }

@@ -54,8 +54,10 @@ export const readRecipes = async (setRecipes, setLoading) => {
 //recept törlése id alapján:
 export const deleteRecipe = async (id, deleteUrl) => {
     //await axios.get(deleteUrl)
+    if(window.confirm("Biztosan szeretnéd törölni a receptet?")){
     const docRef = doc(db, "recipes", id)
     await deleteDoc(docRef)
+    }
 }
 
 //egyetlen recept olvasása:

@@ -23,7 +23,7 @@ export const Recipes = () => {
 
   return (
     <div>
-      <div className='recipesBase' style={{ minHeight: '100vh', padding: "20px", display: "flex", flexDirection: "column", justifySelf: "center" }}>
+      <div className='recipesBase' style={{ minHeight: '100vh', padding: "20px", paddingTop:"40px", display: "flex", flexDirection: "column", justifySelf: "center" }}>
         <div className='recipesTitle'>
           {loading && <p>loading...</p>}
           {recipes && recipes.length > 0 && recipes.map(obj => <RecipeCard key={obj.id} {...obj} />)}

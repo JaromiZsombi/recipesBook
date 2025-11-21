@@ -2,12 +2,19 @@ import React from 'react'
 import { useContext } from 'react'
 import { MyUserContext } from '../context/MyUserProvider'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
 
 export const UserProfile = () => {
-    const { user, avatarUpdate } = useContext(MyUserContext)
+    const { user, avatarUpdate, deleteAccount } = useContext(MyUserContext)
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(!user) navigate("/")
+    }, [user, navigate])
 
     const handleFileChange = (e) => {
         const selected = e.target.files[0]
@@ -32,6 +39,15 @@ export const UserProfile = () => {
             setLoading(false)
         }
     }
+
+    const handleDelete=async ()=>{
+        if(window.confirm("Biztos ki szeretnéd törölni a fiókodat?")){
+            const pw=prompt("Add meg a jelszavad a diók törléséhez")
+            await deleteAccount(pw)
+        }
+            
+    }
+
     return (
         <div>
             <h2>Profil módosítása</h2>
@@ -53,7 +69,7 @@ export const UserProfile = () => {
             </form>
                 {preview && <img src={preview} alt='előnézet' style={{width:"50px", height:"50px", borderRadius:"50%", objectFit:"cover"}} />}
             
-
+                <button onClick={handleDelete} className='deleteAccountButton'>Fiók törlése</button>
         </div>
     )
 }

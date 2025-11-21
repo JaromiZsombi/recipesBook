@@ -20,6 +20,9 @@ const MyToastify = () => {
         }else if(msg?.resetPw){
             toast.success(msg.resetPw, {position:"top-center"})
             setMsg({})
+        }else if(msg?.serverMsg){
+            toast.success(msg.serverMsg, {position:"top-center"})
+            setMsg({})
         }
     },[msg])
   return null;

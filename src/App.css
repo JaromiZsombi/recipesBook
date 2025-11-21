@@ -44,6 +44,7 @@
 .recipesBase{
     background-color: var(--background);
     width: 100%;
+    padding-top: 100px;
 
 }
 .recipesTitle{
@@ -104,17 +105,12 @@ li::marker{
     color: black;
 }
 li{
-    width: 50px;
     text-transform: capitalize;
 }
 ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-bottom: 10px;
 }
 .hozzavalok{
-    text-align: left;
     width: 500px;
     text-align: center;
     padding-top: 10px;
@@ -145,7 +141,20 @@ ul{
 
 .MyHeaderCssButton{
     float: right;
-    height: 40px;
+    height: 50px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 5px;
+    margin-left: 0.2px;
+}
+
+.logOutButton{
+    margin-left: 5px;
+}
+
+.MyHeaderImage{
+    float: right;
+    height: 50px;
 }
 
 .signinBase{
@@ -184,4 +193,24 @@ ul{
 .itt{
     cursor: pointer;
     color: var(--background);
+}
+
+.pageNotFound{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    font-size: 100px;
+
+}
+
+.deleteAccountButton{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    background-color: red;
+}
+
+.hozzavalokList{
+    float: left;
 }

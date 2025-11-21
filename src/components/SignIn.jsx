@@ -9,6 +9,7 @@ export const SignIn = () => {
 
     useEffect(() => {
         msg && msg?.signIn && navigate("/signin")
+        if(msg.signIn) navigate("/recipes")
     }, [msg])
 
     const handleSubmit = (event) => {
@@ -26,7 +27,7 @@ export const SignIn = () => {
                 <h1>Jelentkezz be a fiókodba!</h1>
                 <input name='email' type="email" placeholder='Email' required /><input name='password' type="password" placeholder='Jelszó' required />
                 <p>Nincs fiókod? Csinálj egyet <a onClick={() => navigate("/signup")} style={{ cursor: "pointer", color: "lightblue" }}>itt</a>!</p>
-                <button onClick={()=>navigate("/recipes")}>Bejelentkezés</button>
+                <button>Bejelentkezés</button>
             </form>
             <div style={{display:"flex", justifyContent:"center"}}><a href="#" onClick={()=>navigate("/pwreset")}>Elfelejtett jelszó</a></div>
             
