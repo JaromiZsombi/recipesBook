@@ -27,6 +27,8 @@ export const uploadImage=async (file)=>{
         return null;
     }
 }
+
+//törlés 
 export const deleteImage=async (public_id)=>{
     console.log(public_id)
     try {

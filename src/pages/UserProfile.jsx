@@ -4,6 +4,7 @@ import { MyUserContext } from '../context/MyUserProvider'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
+import { deleteAvatar } from '../myBackend'
 
 export const UserProfile = () => {
     const { user, avatarUpdate, deleteAccount } = useContext(MyUserContext)
@@ -44,6 +45,7 @@ export const UserProfile = () => {
         if(window.confirm("Biztos ki szeretnéd törölni a fiókodat?")){
             const pw=prompt("Add meg a jelszavad a diók törléséhez")
             await deleteAccount(pw)
+            await deleteAvatar(user.uid)
         }
             
     }
