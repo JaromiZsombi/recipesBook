@@ -2,7 +2,7 @@ import imageCompression from "browser-image-compression";
 
 import axios from "axios";
 
-const API_URL="https://recipesbackend67.vercel.app/api/"
+const API_URL="http://localhost:5000/api/"
 
 const convertToBase64=(file)=>{
     return new Promise((resolve, reject)=>{
@@ -25,5 +25,16 @@ export const uploadImage=async (file)=>{
     } catch (error) {
         console.log("Upload failed:", error);
         return null;
+    }
+}
+export const deleteImage=async (public_id)=>{
+    console.log(public_id)
+    try {
+        const resp = await axios.post(API_URL+"deleteImage", {public_id})
+        console.log(resp.data)
+        return resp.data
+    } catch (error) {
+        console.log("A fotó törlése a cloudinaryról nem sikerült", error);
+        
     }
 }

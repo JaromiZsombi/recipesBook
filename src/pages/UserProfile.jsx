@@ -49,7 +49,7 @@ export const UserProfile = () => {
     }
 
     return (
-        <div>
+        <div style={{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center", height:"100vh"}}>
             <h2>Profil módosítása</h2>
 
             <div>
