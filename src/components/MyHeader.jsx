@@ -10,10 +10,9 @@ export const MyHeader = () => {
   const { user, logoutUser } = useContext(MyUserContext)
   return (
     <div className='MyHeaderCss'>
-      <FaHouseChimney onClick={() => navigate("/")} style={{ fontSize: "30px" }} className='house' />
-
+    <FaHouseChimney onClick={() => navigate("/")} style={{ fontSize: "30px" }} className='house' />
       {user ?
-
+      
         <div className='MyHeaderImage'>
           <span onClick={()=>navigate('/profile')}>
             {user?.photoURL ?
@@ -28,6 +27,7 @@ export const MyHeader = () => {
         </div>
         :
         <div className='MyHeaderCss'>
+          <FaHouseChimney onClick={() => navigate("/")} style={{ fontSize: "30px" }} className='house' />
           <button className='MyHeaderCssButton' onClick={() => navigate("/signup")}>
             Regisztrálás
           </button>

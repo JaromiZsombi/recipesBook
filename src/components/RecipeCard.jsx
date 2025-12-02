@@ -13,7 +13,7 @@ export const RecipeCard = ({id, name,steps, ingredients, imgUrl, deleteUrl, uid,
     const navigate=useNavigate()
 
   return (
-    <div className='cardok' style={{margin:"20px", maxWidth:"1000px", position:"relative", maxHeight:"1200px", display:"flex", flexDirection:"column"}}>
+    <div className='cardok' style={{margin:"20px", position:"relative", maxHeight:"1200px", display:"flex", flexDirection:"column"}}>
         <h2><span>{name}</span> <br /><span> ({displayName})</span></h2>
         <div className='hozzavalokBase'>
             <p className='hozzavalok'>Hozzávalók: </p>
@@ -22,10 +22,10 @@ export const RecipeCard = ({id, name,steps, ingredients, imgUrl, deleteUrl, uid,
         </div>
         
         <img src={imgUrl} alt={name} style={{maxWidth:"500px", marginTop:"10px", borderRadius:"10px"}} />
-        <div style={{backgroundColor:"white", marginTop:"10px", borderRadius:"10px", paddingTop:"10px", paddingBottom:"10px",display:"flex", flexDirection:"column", flex:"1"}}>
+        <div style={{backgroundColor:"white", marginTop:"10px", borderRadius:"10px", paddingTop:"10px", paddingBottom:"10px",display:"flex", flexDirection:"column", maxHeight:"100%", overflowY:"scroll", textAlign:"center", overflowX:"hidden"}}>
             <p className='hozzavalok' style={{textAlign:"center"}}>Elkészítés: </p>
             <hr />
-            <p style={{paddingLeft:"20px", paddingRight:"20px", overflowY:"scroll", maxHeight:"300px"}}>{steps}</p>
+            <p style={{paddingLeft:"20px", paddingRight:"20px", maxHeight:"100%", flex:"1"}}>{steps}</p>
         </div>
         
         {user && user.uid== uid &&

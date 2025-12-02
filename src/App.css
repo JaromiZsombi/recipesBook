@@ -111,7 +111,7 @@ ul{
     padding-bottom: 10px;
 }
 .hozzavalok{
-    width: 500px;
+    max-width: 500px;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -120,7 +120,7 @@ ul{
     background-color: var(--accent);
     border-radius: 20px;
     padding: 20px;
-    width: 540px;
+    max-width: 540px;
 }
 .hozzavalokBase{
     display: flex;
@@ -138,6 +138,7 @@ ul{
     background: transparent;
     z-index: 1;
 }
+
 
 .MyHeaderCssButton{
     float: right;
@@ -220,4 +221,13 @@ ul{
 
 .hozzavalokList{
     float: left;
+}
+
+@media only screen and (max-width:600px){
+    .cardok{
+        max-width: 100%;
+        font-size: 20px;
+        padding: 10px;
+
+    }
 }
